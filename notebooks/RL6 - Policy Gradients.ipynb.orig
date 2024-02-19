@@ -146,7 +146,7 @@
     "\n",
     "## Reminder on the policy optimization objective\n",
     "\n",
-    "Recall the policy optimization objective defined in previous chapters, given a distribution $p_0$ on states :  \n",
+    "Recal the policy optimization objective defined in previous chapters, given a distribution $p_0$ on states :  \n",
     "$$J(\\pi) = \\mathbb{E}_{s \\sim p_0} \\left[ V^{\\pi} (s) \\right].$$\n",
     "($J$ is an example of evaluation criterion as mentioned above)\n",
     "\n",
@@ -313,11 +313,14 @@
    "source": [
     "**Remark 4: the expected grad-log-prob lemma.**  \n",
     "Let us take a step aside and consider the expectation of $\\nabla_\\theta \\log \\pi_\\theta(a|s)$.  \n",
-    "Let's simplify the notation and consider a generic probability density function $\\pi_\\theta(x)$. Then:\n",
     "In a given $s$:\n",
     "\\begin{align}\n",
-    "\\mathbb{E}_{a\\sim \\pi_\\theta(s)} [ \\nabla_\\theta \\log \\pi_\\theta(x) ] &= \\int_A \\pi_\\theta(a|s) \\nabla_\\theta \\log \\pi_\\theta(a|s) da\\\\\n",
-    " &= \\int_A \\pi_\\theta(a|s) da\\\\\n",
+    "\\mathbb{E}_{a\\sim \\pi_\\theta(s)} [ \\nabla_\\theta \\log \\pi_\\theta(a|s) ] &= \\int_A \\pi_\\theta(a|s) \\nabla_\\theta \\log \\pi_\\theta(a|s) da\\\\\n",
+    "<<<<<<< local\n",
+    " &= \\int_A \\nabla_{\\theta}\\pi_\\theta(a|s) da\\\\\n",
+    "=======\n",
+    " &= \\int_A \\nabla_\\theta \\pi_\\theta(a|s) da\\\\\n",
+    ">>>>>>> remote\n",
     " &= \\nabla_\\theta \\int_A \\pi_\\theta(a|s) da\\\\\n",
     " &= \\nabla_\\theta 1\\\\\n",
     " &= 0\n",
@@ -388,8 +391,13 @@
     "1. Initialize policy parameter $\\theta$\n",
     "2. Generate a trajectory by playing $\\pi$: $s_0,a_0,r_0,...s_{T}$\n",
     "3. For $t\\in [1, 2, … , T]$:\n",
+    "<<<<<<< local\n",
     "    1. Estimate return $G_t$ (given the whole traj, is it done by solving backward Bellman eq? It seems the answer is yes looking at code of one_gradient_step() function below)\n",
-    "    2. Update policy parameter: $\\theta \\leftarrow \\theta + \\alpha G_t \\nabla_\\theta \\log \\pi(a_t|s_t)$"
+    "    2. Update policy parameter: $\\theta \\leftarrow \\theta + \\alpha \\gamma^t G_t \\nabla_\\theta \\log \\pi(a_t|s_t)$\n",
+    "=======\n",
+    "    1. Estimate return $G_t$\n",
+    "    2. Update policy parameter: $\\theta \\leftarrow \\theta + \\alpha G_t \\nabla_\\theta \\log \\pi(a_t|s_t)$\n",
+    ">>>>>>> remote"
    ]
   },
   {
@@ -1669,6 +1677,60 @@
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
    "version": "3.9.18"
+  },
+  "nbdime-conflicts": {
+   "local_diff": [
+    {
+     "diff": [
+      {
+       "diff": [
+        {
+         "key": 0,
+         "op": "addrange",
+         "valuelist": [
+          "3.10.11"
+         ]
+        },
+        {
+         "key": 0,
+         "length": 1,
+         "op": "removerange"
+        }
+       ],
+       "key": "version",
+       "op": "patch"
+      }
+     ],
+     "key": "language_info",
+     "op": "patch"
+    }
+   ],
+   "remote_diff": [
+    {
+     "diff": [
+      {
+       "diff": [
+        {
+         "key": 0,
+         "op": "addrange",
+         "valuelist": [
+          "3.11.7"
+         ]
+        },
+        {
+         "key": 0,
+         "length": 1,
+         "op": "removerange"
+        }
+       ],
+       "key": "version",
+       "op": "patch"
+      }
+     ],
+     "key": "language_info",
+     "op": "patch"
+    }
+   ]
   }
  },
  "nbformat": 4,
